@@ -1,4 +1,3 @@
-
 -- 1) Total Sales Summary (May, June, YTD)
 SELECT 
     SUM(may_2025) AS total_may_25,
@@ -8,7 +7,6 @@ SELECT
     SUM(ytd_fy26) AS total_ytd_fy26,
     SUM(ytd_fy25) AS total_ytd_fy25
 FROM volvo_sales;
-
 -- 2) Segment-wise YTD Sales Growth (FY26 vs FY25)
 SELECT 
     segment,
@@ -17,7 +15,6 @@ SELECT
     ROUND(((ytd_fy26 - ytd_fy25) * 100.0 / NULLIF(ytd_fy25, 0)), 2) AS ytd_growth_pct
 FROM volvo_sales
 ORDER BY ytd_growth_pct DESC;
-
 -- 3) Top Performing Segment in June 2025
 SELECT 
     segment,
@@ -25,7 +22,6 @@ SELECT
 FROM volvo_sales
 ORDER BY jun_2025 DESC
 LIMIT 1;
-
 -- 4) Worst Performing Segment in May 2025 (Based on YoY growth)
 SELECT 
     segment,
@@ -35,7 +31,6 @@ SELECT
 FROM volvo_sales
 ORDER BY may_growth_pct
 LIMIT 1;
-
 -- 5) All Segments with Negative Growth in June 2025
 SELECT 
     segment,
@@ -44,7 +39,6 @@ SELECT
     ROUND(((jun_2025 - jun_2024) * 100.0 / NULLIF(jun_2024, 0)), 2) AS june_growth_pct
 FROM volvo_sales
 WHERE ((jun_2025 - jun_2024) * 100.0 / NULLIF(jun_2024, 0)) < 0;
-
 -- 6) Percentage Growth Summary Table (All Months)
 SELECT 
     segment,
